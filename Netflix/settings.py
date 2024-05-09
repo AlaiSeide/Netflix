@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Define o diretório base do projeto Django essa linha de código define BASE_DIR como o caminho absoluto para o diretório raiz do projeto Django
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -20,16 +21,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Chave secreta usada pelo Django para fins de segurança
 SECRET_KEY = 'django-insecure-8s86w5ll51(o56d+!l9q1ir#8r34!2sw31-+@lza@!7=g&o5v^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Define se o modo de depuração está ativado ou desativado
+# quando eu fizer uma mudancao no meu codigo, essa mudanca sera instataniamente refletida no meu aplicativo, nao vou precisar pausar e rodar de novo o meu codigo.
 DEBUG = True
 
+#ALLOWED_HOSTS: Esta é uma lista de strings que representa os hosts permitidos para o seu aplicativo Django. Um "host" é basicamente o endereço da web do seu aplicativo, como "example.com" ou "localhost". Ao definir ALLOWED_HOSTS, você especifica quais hosts têm permissão para acessar o seu aplicativo Django.Por exemplo, se você estiver implantando seu aplicativo em um servidor com o nome de domínio "example.com", você pode configurar ALLOWED_HOSTS assim:
+# ALLOWED_HOSTS = ['example.com']
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
+#Em resumo, a lista INSTALLED_APPS define todos os aplicativos que o seu projeto Django está usando e os recursos que eles fornecem. Cada aplicativo adiciona funcionalidades específicas ao seu projeto, como administração, autenticação de usuário, manipulação de sessão e assim por diante. O aplicativo 'filme' é um aplicativo personalizado que você adicionou ao seu projeto para implementar funcionalidades específicas relacionadas a filmes.
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,8 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'filme',
 ]
 
+#Em resumo, a lista MIDDLEWARE define uma série de middlewares que processam as requisições HTTP antes que elas alcancem as views do seu aplicativo e as respostas HTTP antes que elas sejam enviadas de volta ao cliente. Cada middleware desempenha um papel importante na segurança e no funcionamento correto do seu projeto Django.
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,8 +57,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Essa configuração define o arquivo de configuração de URLs principal para o seu projeto Django. ortanto, quando um pedido é feito para o seu aplicativo Django, o Django usa o arquivo de configuração de URL principal especificado em ROOT_URLCONF para determinar como rotear esse pedido para a visualização apropriada com base na URL solicitada. O Django então executa a visualização correspondente para gerar a resposta apropriada para o pedido.
 ROOT_URLCONF = 'Netflix.urls'
 
+# Essa configuração define como o Django gerencia os templates. Ele usa o backend padrão do Django para templates. O Django vai procurar por templates nos diretórios dos aplicativos instalados. Além disso, define alguns processadores de contexto padrão para adicionar variáveis úteis aos templates, como informações sobre o usuário logado e mensagens.
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -67,12 +77,14 @@ TEMPLATES = [
     },
 ]
 
+# Em resumo, esta configuração define o arquivo de aplicativo WSGI que o servidor da web usará para servir o seu projeto Django. Este arquivo é responsável por iniciar o aplicativo Django e lidar com solicitações HTTP recebidas pelo servidor da web.
 WSGI_APPLICATION = 'Netflix.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+#Resumindo, essa configuração define as configurações do banco de dados para o seu projeto Django, especificando que está usando SQLite como banco de dados padrão e onde o arquivo do banco de dados deve ser criado.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,6 +96,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
+# Essa configuração define as validações de senha que o Django aplicará ao criar ou alterar senhas de usuário.Essas validações ajudam a garantir que as senhas dos usuários sejam seguras e difíceis de adivinhar, aumentando a segurança geral do seu aplicativo Django.
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,24 +113,52 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#Essas configurações são importantes para tornar seu aplicativo Django compatível com diferentes idiomas e fusos horários, garantindo uma experiência adequada para usuários em todo o mundo. Você pode ajustar essas configurações de acordo com as necessidades específicas do seu projeto.
+
+# Para mudar o idioma padrão para português do Brasil e ajustar o fuso horário para a Alemanha (Hamburgo) no seu projeto Django, você pode fazer as seguintes alterações nas configurações:
+    # LANGUAGE_CODE = 'pt-br'
+    # TIME_ZONE = 'Europe/Berlin'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+# LANGUAGE_CODE: Esta configuração define o idioma padrão usado em seu aplicativo. Aqui, 'en-us' indica inglês (Estados Unidos).
+LANGUAGE_CODE = 'pt-br'
 
-LANGUAGE_CODE = 'en-us'
+#TIME_ZONE: Esta configuração define o fuso horário padrão usado em seu aplicativo. Aqui, 'UTC' indica o Tempo Universal Coordenado.
+TIME_ZONE = 'Europe/Berlin'
 
-TIME_ZONE = 'UTC'
-
+# USE_I18N: Esta configuração ativa a internacionalização em seu aplicativo, permitindo a tradução de textos e mensagens em diferentes idiomas.
 USE_I18N = True
 
+# USE_TZ: Esta configuração ativa o suporte a fuso horário em seu aplicativo, permitindo que o Django armazene datas e horas no banco de dados no fuso horário especificado em TIME_ZONE.
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# As fotos que os usuarios apostam sao medias
+# As fotos que eu criador do site subo na minha pagina, tipo o logo da pagina, sao static
+
+# Essa configuração define a URL base para servir arquivos estáticos (como arquivos CSS, JavaScript e imagens) no seu projeto Django. Vamos comentar essa linha de código:
+# Define a URL base para servir arquivos estáticos
 STATIC_URL = 'static/'
+
+# Define os diretórios onde os arquivos estáticos serão procurados
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Define a URL base para servir arquivos de mídia
+MEDIA_URL = 'media/'
+
+# Define o diretório raiz onde os arquivos de mídia serão armazenados
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# Essa configuração define o tipo de campo padrão que o Django usará para chaves primárias automáticas.
+# Essa configuração é importante para garantir que o Django use o tipo de campo apropriado para chaves primárias automáticas em seus modelos, especialmente em situações onde o banco de dados subjacente pode precisar de um tipo de campo específico para otimização de desempenho ou suporte a grandes volumes de dados.
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -17,8 +17,20 @@ Including another URLconf
 
 # AQUI DEFINIMOS AS URLS DO NOSSO SITE
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
+
+# Define os padrões de URL para o seu aplicativo Django
 urlpatterns = [
+    # Define a URL para a interface de administração do Django
     path('admin/', admin.site.urls),
+    path('/', include('filme.urls')),
 ]
+
+# Adiciona a URL de arquivos estáticos ao urlpatterns
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Adiciona a URL de arquivos de mídia ao urlpatterns
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
