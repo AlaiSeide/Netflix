@@ -2,9 +2,15 @@ echo "# Netflix" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
+
+esse comando git branch -M main renomeia a branch atual para "main". Isso é útil, por exemplo, se você estiver migrando para uma convenção de nomenclatura diferente, onde a branch principal é chamada "main" em vez de "master".
 git branch -M main
+
 git remote add origin https://github.com/AlaiSeide/Netflix.git
+
+resumindo, esse comando envia as alterações da branch local "main" para o repositório remoto chamado "origin", e configura a branch local para acompanhar a branch remota. Isso é útil para manter o código sincronizado entre o seu computador e o servidor remoto.
 git push -u origin main
+
 …or push an existing repository from the command line
 git remote add origin https://github.com/AlaiSeide/Netflix.git
 git branch -M main
