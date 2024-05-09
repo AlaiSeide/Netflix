@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    HomeFilmes Netflix
+{% endblock %}
+
+
+{% block content %}
+    <div class="py-16">
+        <h1>Essa é a nossa HomeFilmes</h1>
+        {% for filme in lista_filmes %}
+        <hr>
+            <div>{{ filme }}</div>
+            <div>{{ filme.data_criacao }}</div>
+            <div>{{ filme.categoria }}</div>
+            <div>{{ filme.descricao }}</div>
+            <img src="{{ filme.thumb.url }}" alt="" width="300">
+        {% endfor %}
+    </div>
+{% endblock %}

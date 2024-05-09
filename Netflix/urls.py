@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Define a URL para a interface de administração do Django
     path('admin/', admin.site.urls),
-    path('/', include('filme.urls')),
+    path('', include('filme.urls')),
 ]
 
 # Adiciona a URL de arquivos estáticos ao urlpatterns
