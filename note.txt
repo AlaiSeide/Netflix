@@ -15,3 +15,23 @@ git push -u origin main
 git remote add origin https://github.com/AlaiSeide/Netflix.git
 git branch -M main
 git push -u origin main
+
+
+python manage.py  makemigrations
+    makemigrations: Este é o comando que você está executando. Ele diz ao Django para criar um "arquivo de migração" com todas as alterações que você fez nos modelos de dados.
+    Um "arquivo de migração" é como uma lista de instruções para o Django sobre como alterar o banco de dados para refletir suas mudanças nos modelos. Por exemplo, se você adicionou um novo campo a um modelo, o arquivo de migração dirá ao Django para adicionar esse campo à tabela correspondente no banco de dados.
+
+
+o comando > python manage.py migrate
+    migrate: É o comando que você está executando. Ele diz ao Django para aplicar quaisquer alterações no banco de dados que você tenha feito no seu código.
+    Por exemplo, se você adicionou um novo modelo de dados (como uma tabela de usuários), o Django precisa saber como criar essa tabela no banco de dados. O comando migrate faz isso acontecer. Ele cria ou atualiza tabelas de banco de dados de acordo com as mudanças que você fez no seu código.
+
+    Então, resumindo, o comando python manage.py migrate garante que o seu banco de dados esteja atualizado com as últimas alterações no seu código Django. É uma parte importante do processo de desenvolvimento web com Django.
+
+
+
+python manage.py createsuperuser.
+    Você será solicitado a digitar um nome de usuário. Este será o nome que você usará para fazer login no admin do Django.
+    Em seguida, você será solicitado a digitar um endereço de e-mail para o superusuário. Isso é útil para redefinir a senha ou enviar notificações importantes.
+    Por fim, você será solicitado a digitar uma senha para o superusuário. Digite uma senha segura e lembre-se dela.
+    Depois de seguir esses passos, o superusuário será criado e você poderá usá-lo para acessar o painel de administração do Django, onde poderá gerenciar seus dados de aplicação de forma fácil e rápida.
