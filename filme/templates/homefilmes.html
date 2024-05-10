@@ -11,9 +11,14 @@
 
         <!--lista_filmes é a chave do meu dicionario no arquivo views-->
         {% for filme in lista_filmes %}
-        <hr>
+            <hr>
             <div>{{ filme.pk }}</div>
-            <div>{{ filme.titulo }}</div>
+
+            <!--Aqui, 'filme:detalhesfilme' diz ao Django para procurar a URL chamada "home" dentro do namespace "filme".-->
+            <a href="{% url 'filme:detalhesfilme' filme.id %}">
+                <p>{{ filme.titulo }}</p>
+            </a>
+
             <div>{{ filme.data_criacao }}</div>
             <div>{{ filme.categoria }}</div>
             <div>{{ filme.descricao }}</div>

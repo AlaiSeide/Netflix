@@ -37,5 +37,19 @@ class Filme(models.Model):
         super().save(*args, **kwargs)
 
 # criar os episodios
+class Episodio(models.Model):
+    # definir a chave estrangeira sempre como primeiro
 
-# criar o usuario
+    # Define um campo de chave estrangeira chamado 'filme' no modelo atual.
+    # Este campo estabelece uma relação com o modelo 'Filme'.
+    # 'Filme' é o nome do modelo ao qual este campo está se referindo.
+    # O 'related_name' é usado para acessar os episódios de um filme específico a partir do modelo Filme.
+    # 'episodios' é o nome personalizado pelo qual podemos acessar os episódios de um filme.
+    # 'on_delete=models.CASCADE' especifica que se um filme for excluído, todos os episódios associados a ele também serão excluídos.
+    # Isso garante a integridade referencial no banco de dados.
+    filme = models.ForeignKey('Filme', related_name='episodios', on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100)
+    video = models.URLField()
+
+    def __str__(self) -> str:
+        return self.filme.titulo + " - " + self.titulo

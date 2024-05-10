@@ -27,7 +27,11 @@ urlpatterns = [
     # Define a URL para a interface de administração do Django
     path('admin/', admin.site.urls),
     # include('filme.urls'): Isso inclui as rotas definidas no arquivo urls.py do aplicativo filme. O Django procurará neste arquivo por padrões de URL adicionais sempre que o URL raiz for solicitado.
-    path('', include('filme.urls')),
+
+    # O namespace='filme' é como um sobrenome para as URLs da sua aplicação de filmes. Ele ajuda a diferenciar e organizar as URLs de diferentes partes do seu projeto.
+    # Por exemplo, imagine que você tem um site que inclui seções para filmes, séries e músicas. Cada seção tem sua própria página inicial. Com o namespace, você pode dar um nome único para as URLs de cada seção.
+    # ex: <a href="{% url 'filme:home' %}">Página Inicial de Filmes</a>, Aqui, 'filme:home' diz ao Django para procurar a URL chamada "home" dentro do namespace "filme".
+    path('', include('filme.urls', namespace='filme')),
 ]
 
 # Adiciona a URL de arquivos estáticos ao urlpatterns

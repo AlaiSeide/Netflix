@@ -11,5 +11,12 @@
         <p>{{ object.titulo }}</p>
         <p>{{ object.descricao }}</p>
         <img src="{{ object.thumb.url }}" alt="">
+
+        <h2>Episodios</h2>
+        {% for episodio in object.episodios.all %}
+            <p>{{ episodio.titulo }}</p>
+            <!--{{ forloop.counter }} é uma variável especial em templates do Django que retorna o número da iteração atual em um loop.-->
+            <p>Episodio {{ forloop.counter }}: <a href="{{ episodio.video }}">{{ episodio.titulo }}</a></p>
+        {% endfor %}
     </div>
 {% endblock %}

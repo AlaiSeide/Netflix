@@ -1,3 +1,4 @@
+from typing import Any
 from django.shortcuts import render
 from .models import Filme
 from django.views.generic import TemplateView, ListView, DetailView
@@ -36,3 +37,7 @@ class Detalhesfilme(DetailView):
     # object é o padrao caso nao definimos o context
     template_name = 'detalhesfilme.html' # O nome do arquivo de template que será usado para mostrar os detalhes do filme
     model = Filme
+
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        return super().get_context_data(**kwargs)
