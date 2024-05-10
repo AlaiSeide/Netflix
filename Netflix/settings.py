@@ -85,12 +85,27 @@ WSGI_APPLICATION = 'Netflix.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 #Resumindo, essa configuração define as configurações do banco de dados para o seu projeto Django, especificando que está usando SQLite como banco de dados padrão e onde o arquivo do banco de dados deve ser criado.
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+
+# pip install mysqlclient
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'netflix',
+        'USER': 'root',
+        'PASSWORD': 'flashreverso20',
+        'HOST': '192.168.220.130',
+        'PORT': '3306',
     }
 }
+
 
 
 # Password validation
