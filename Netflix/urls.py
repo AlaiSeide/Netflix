@@ -26,6 +26,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Define a URL para a interface de administração do Django
     path('admin/', admin.site.urls),
+    # include('filme.urls'): Isso inclui as rotas definidas no arquivo urls.py do aplicativo filme. O Django procurará neste arquivo por padrões de URL adicionais sempre que o URL raiz for solicitado.
     path('', include('filme.urls')),
 ]
 

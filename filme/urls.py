@@ -12,4 +12,5 @@ urlpatterns = [
     # homepage é a minha view
     path('', homepage),
     path('filmes/', homefilmes),
+
 ]

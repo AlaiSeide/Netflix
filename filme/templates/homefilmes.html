@@ -8,9 +8,12 @@
 {% block content %}
     <div class="py-16">
         <h1>Essa é a nossa HomeFilmes</h1>
+
+        <!--lista_filmes é a chave do meu dicionario no arquivo views-->
         {% for filme in lista_filmes %}
         <hr>
-            <div>{{ filme }}</div>
+            <div>{{ filme.pk }}</div>
+            <div>{{ filme.titulo }}</div>
             <div>{{ filme.data_criacao }}</div>
             <div>{{ filme.categoria }}</div>
             <div>{{ filme.descricao }}</div>

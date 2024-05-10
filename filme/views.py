@@ -13,6 +13,8 @@ def homefilmes(request):
     # pegando todos os objetos do meu banco de dados
     # uma lista com todos os filmes do meu banco de dados
     lista_filmes = Filme.objects.all()
+    print(lista_filmes)
     # criando uma chave no dicionario
     context['lista_filmes'] = lista_filmes
     return render(request, 'homefilmes.html', context)
+
