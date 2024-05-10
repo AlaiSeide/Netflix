@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': 'netflix',
         'USER': 'root',
         'PASSWORD': 'flashreverso20',
-        'HOST': '192.168.220.130',
+        'HOST': '192.168.56.1',
         'PORT': '3306',
     }
 }
