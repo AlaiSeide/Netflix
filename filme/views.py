@@ -33,11 +33,14 @@ class Homefilmes(ListView):
     context_object_name = 'lista_filmes'  # O nome da variável que será usada no template para acessar os itens o object_list é o padrao caso nao definimos o context
 
 
-class Detalhesfilme(DetailView):
-    # object é o padrao caso nao definimos o context
-    template_name = 'detalhesfilme.html' # O nome do arquivo de template que será usado para mostrar os detalhes do filme
-    model = Filme
+class Detalhesfilme(DetailView):  # Definindo a classe da nossa DetailView
+    template_name = 'detalhesfilme.html'  # Especificando o nome do arquivo de template que será usado para mostrar os detalhes do filme
+    model = Filme  # Especificando o modelo que essa view vai lidar
 
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        return super().get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):  # Sobrescrevendo o método get_context_data
+        context = super().get_context_data(**kwargs)  # Chamando o método get_context_data da classe mãe para obter o contexto original
+        # os filmes relacionados sao os filmes que tem a mesma categoria
+        # Busca todos os filmes que têm a mesma categoria do filme atual
+        filmes_relacionados = Filme.objects.filter(categoria=self.get_object().categoria)
+        context['filmes_relacionados'] = filmes_relacionados # Adicionando uma nova entrada ao dicionário de contexto
+        return context  # Retornando o contexto atualizado
