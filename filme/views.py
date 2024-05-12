@@ -1,4 +1,5 @@
 from typing import Any
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from .models import Filme
 from django.views.generic import TemplateView, ListView, DetailView
@@ -32,10 +33,28 @@ class Homefilmes(ListView):
     model = Filme
     context_object_name = 'lista_filmes'  # O nome da variável que será usada no template para acessar os itens o object_list é o padrao caso nao definimos o context
 
+   
 
 class Detalhesfilme(DetailView):  # Definindo a classe da nossa DetailView
     template_name = 'detalhesfilme.html'  # Especificando o nome do arquivo de template que será usado para mostrar os detalhes do filme
     model = Filme  # Especificando o modelo que essa view vai lidar
+
+
+    # get é o método que estamos sobrescrevendo. Ele é chamado quando o usuário faz uma solicitação GET.
+    # quando o usuario entrar na pagina de uma filme, vou considerar que ele visualizou ele filme e vou contar
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse: 
+        
+       
+        # Antes de redirecionar eu quero contabilizar uma visualizacao do filme
+        # desobrir qual filme o cara ta acessando
+        filme = self.get_object()
+        # somar 1 nas visualizacoes desse filme
+        filme.visualizacoes += 1
+        # quando dentro do views editamos um campo da nossa tabela, temos que salvar essa modificacao
+        # salva a alteração no banco de dados.
+        filme.save()
+        return super().get(request, *args, **kwargs) # isso redireciona o usuario para o url final
+
 
     def get_context_data(self, **kwargs):  # Sobrescrevendo o método get_context_data
         context = super().get_context_data(**kwargs)  # Chamando o método get_context_data da classe mãe para obter o contexto original
@@ -44,3 +63,5 @@ class Detalhesfilme(DetailView):  # Definindo a classe da nossa DetailView
         filmes_relacionados = Filme.objects.filter(categoria=self.get_object().categoria)
         context['filmes_relacionados'] = filmes_relacionados # Adicionando uma nova entrada ao dicionário de contexto
         return context  # Retornando o contexto atualizado
+
+   
